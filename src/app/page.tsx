@@ -25,24 +25,15 @@ export default function Home() {
               <p>
                 I build and grow brands in the Bitcoin and startup ecosystem —
                 from first post to 300K+ engaged members, conference summits, and
-                the relationships that make a project feel inevitable.
+                the relationships that make a project grow organically.
               </p>
               <p>
                 Event programming, community ops, and content systems. Deep
-                connections across Bitcoin Twitter and the developer community.
-                Currently operating brand and community at{" "}
-                <a
-                  href="https://www.arch.network/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Arch Network
-                </a>
-                .
+                connections across the crypto and the web3 startup community.
               </p>
               <p>
-                Before crypto: chemistry teacher, varsity football coach, NCAA
-                athlete. B.A. Biology, Wabash College.
+                Pre-crypto: chemistry educator, NCAA athlete. B.A. Biology,
+                Wabash College.
               </p>
             </section>
           </div>

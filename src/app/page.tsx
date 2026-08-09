@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { HomeHero } from "@/components/MatchedPortrait";
 import { ScrambleTitle } from "@/components/ScrambleTitle";
 import { asset } from "@/lib/paths";
 
@@ -12,14 +12,15 @@ export default function Home() {
         - Simplicity wins.
       */}
       <main className="shell shell--home">
-        <HomeHero>
-          <header>
-            <h1 className="site-title">
-              <ScrambleTitle primary="Bryan Elliott" secondary="BryanXBT" />
-            </h1>
-            <p className="site-role">community · brand · bitcoin</p>
-          </header>
+        <header>
+          <h1 className="site-title">
+            <ScrambleTitle primary="Bryan Elliott" secondary="BryanXBT" />
+          </h1>
+          <p className="site-role">community · brand · bitcoin</p>
+        </header>
 
+        {/* Image height matches the bio paragraphs only (not the title). */}
+        <div className="home-body">
           <section className="prose home-prose">
             <p>
               I build and grow brands in the Bitcoin and startup ecosystem —
@@ -35,7 +36,18 @@ export default function Home() {
               College.
             </p>
           </section>
-        </HomeHero>
+
+          <div className="home-portrait">
+            <Image
+              src={asset("/assets/bryan-headshot.png")}
+              alt="Bryan Elliott"
+              width={1024}
+              height={1024}
+              priority
+              className="home-portrait-img"
+            />
+          </div>
+        </div>
 
         <nav className="home-bar" aria-label="Site">
           <Link href="/work">work</Link>

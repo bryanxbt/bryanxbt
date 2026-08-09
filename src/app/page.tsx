@@ -12,37 +12,39 @@ export default function Home() {
         - Simplicity wins.
       */}
       <main className="shell shell--home">
-        <header>
-          <h1 className="site-title">
-            <ScrambleTitle primary="Bryan Elliott" secondary="BryanXBT" />
-          </h1>
-          <p className="site-role">community · brand · bitcoin</p>
-        </header>
-
-        {/* Text + image row: image height matches the prose block */}
+        {/* Full text column (title + bio) left; portrait matches that full height */}
         <div className="home-body">
-          <section className="prose home-prose">
-            <p>
-              I build and grow brands in the Bitcoin and startup ecosystem —
-              from first post to 300K+ engaged members, conference summits, and
-              the relationships that make a project grow organically.
-            </p>
-            <p>
-              Event programming, community ops, and content systems. Deep
-              connections across the crypto and the web3 startup community.
-            </p>
-            <p>
-              Pre-crypto: chemistry educator, NCAA athlete. B.A. Biology, Wabash
-              College.
-            </p>
-          </section>
+          <div className="home-copy">
+            <header>
+              <h1 className="site-title">
+                <ScrambleTitle primary="Bryan Elliott" secondary="BryanXBT" />
+              </h1>
+              <p className="site-role">community · brand · bitcoin</p>
+            </header>
 
-          <div className="home-portrait" aria-hidden={false}>
+            <section className="prose home-prose">
+              <p>
+                I build and grow brands in the Bitcoin and startup ecosystem —
+                from first post to 300K+ engaged members, conference summits, and
+                the relationships that make a project grow organically.
+              </p>
+              <p>
+                Event programming, community ops, and content systems. Deep
+                connections across the crypto and the web3 startup community.
+              </p>
+              <p>
+                Pre-crypto: chemistry educator, NCAA athlete. B.A. Biology, Wabash
+                College.
+              </p>
+            </section>
+          </div>
+
+          <div className="home-portrait">
             <Image
               src={asset("/assets/bryan-headshot.png")}
               alt="Bryan Elliott"
               fill
-              sizes="(max-width: 720px) 100vw, 40vw"
+              sizes="(max-width: 720px) 100vw, 42vw"
               priority
               className="home-portrait-img"
             />

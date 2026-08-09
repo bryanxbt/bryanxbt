@@ -94,48 +94,58 @@ body {
   }
 }
 
-/* —— Home: prose left, photo right (same height as text) —— */
-
-.shell--home .site-role {
-  margin-bottom: 1.75rem;
-}
+/* —— Home: full text block left, portrait right (same total height) —— */
 
 .home-body {
   display: grid;
-  gap: 1.5rem;
+  gap: 1.75rem;
   align-items: stretch;
 }
 
 @media (min-width: 720px) {
   .home-body {
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 2rem;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2.25rem;
   }
+}
+
+.home-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-copy .site-role {
+  margin-bottom: 1.75rem;
 }
 
 .home-prose {
   min-width: 0;
 }
 
-/* Portrait column stretches to match prose block height */
+/*
+  Portrait fills the grid cell height, which is set by the full left column
+  (title + role + all paragraphs). Absolute fill so it always matches.
+*/
 .home-portrait {
   position: relative;
   width: 100%;
-  min-height: 14rem;
+  min-height: 16rem;
   margin: 0;
   overflow: hidden;
+  background: #fff;
 }
 
 @media (min-width: 720px) {
   .home-portrait {
-    min-height: 0; /* let grid stretch dictate height */
-    height: 100%;
+    min-height: 100%;
+    align-self: stretch;
   }
 }
 
 .home-portrait-img {
   object-fit: cover;
-  object-position: center top;
+  object-position: center 12%;
 }
 
 /* Bottom page buttons on home */

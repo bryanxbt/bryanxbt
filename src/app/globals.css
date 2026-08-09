@@ -80,10 +80,149 @@ body {
   padding: 4rem 1.75rem 5rem;
 }
 
+.shell--home {
+  max-width: 48rem; /* room for text + portrait */
+}
+
+.shell--page {
+  max-width: 38rem;
+}
+
 @media (min-width: 640px) {
   .shell {
     padding: 5.5rem 2rem 6rem;
   }
+}
+
+/* —— Home: copy left, photo right —— */
+
+.home-hero {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 720px) {
+  .home-hero {
+    grid-template-columns: 1fr minmax(10rem, 14rem);
+    gap: 2.5rem;
+    align-items: start;
+  }
+}
+
+.home-copy .site-role {
+  margin-bottom: 1.75rem;
+}
+
+.home-portrait {
+  max-width: 14rem;
+  margin: 0;
+}
+
+@media (min-width: 720px) {
+  .home-portrait {
+    margin-top: 0.15rem;
+    justify-self: end;
+  }
+}
+
+.home-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  mix-blend-mode: multiply;
+  opacity: 0.92;
+  transition: filter 0.35s ease, opacity 0.35s ease;
+}
+
+.home-portrait:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* Bottom page buttons on home */
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 0;
+  margin-top: 2.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9rem;
+}
+
+.home-action {
+  color: var(--ink-soft);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.12s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.home-action:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.home-action + .home-action::before {
+  content: "·";
+  color: var(--rule-strong);
+  margin: 0 0.7rem;
+  pointer-events: none;
+}
+
+.links--home {
+  margin-top: 1.5rem;
+}
+
+/* Subpage chrome */
+
+.page-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+.page-home {
+  font-size: 1.1rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.015em;
+}
+
+.page-home:hover {
+  color: var(--ink-body);
+}
+
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  font-size: 0.85rem;
+}
+
+.page-nav-link {
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.12s ease;
+}
+
+.page-nav-link:hover,
+.page-nav-link.is-active {
+  color: var(--ink);
+}
+
+.page-nav-link + .page-nav-link::before {
+  content: "·";
+  color: var(--rule-strong);
+  margin: 0 0.55rem;
+  pointer-events: none;
 }
 
 /* —— Type —— */
@@ -291,28 +430,6 @@ body {
     content: none;
     margin: 0;
   }
-}
-
-/* —— Portrait —— */
-
-.portrait {
-  margin: 2rem 0 0;
-  max-width: 11rem;
-}
-
-.portrait img {
-  display: block;
-  width: 100%;
-  height: auto;
-  filter: grayscale(100%);
-  mix-blend-mode: multiply;
-  opacity: 0.92;
-  transition: filter 0.35s ease, opacity 0.35s ease;
-}
-
-.portrait:hover img {
-  filter: grayscale(0%);
-  opacity: 1;
 }
 
 /* —— Form (stoic) —— */

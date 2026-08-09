@@ -94,54 +94,63 @@ body {
   }
 }
 
-/* —— Home: title above; bio left + portrait right (same height as paragraphs) —— */
+/* —— Home: text block left, headshot right (same height: title → College) —— */
 
-.shell--home .site-role {
-  margin-bottom: 1.75rem;
+.shell--home {
+  max-width: 52rem;
 }
 
 .home-body {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  align-items: stretch;
+  align-items: flex-start;
 }
 
 @media (min-width: 720px) {
   .home-body {
     flex-direction: row;
     gap: 2rem;
-    align-items: stretch;
+    align-items: flex-start;
   }
+}
+
+.home-copy {
+  min-width: 0;
+  flex: 1 1 auto;
+  max-width: 28rem;
+}
+
+.home-copy .site-role {
+  margin-bottom: 1.75rem;
 }
 
 .home-prose {
   min-width: 0;
-  flex: 1 1 auto;
 }
 
 /*
-  Portrait column stretches to the bio paragraph height only.
-  Full image, no crop — height fills the column, width scales.
+  Box height is set in JS to match .home-copy (title through last line).
+  Image fills that box with contain — full photo, no crop.
 */
 .home-portrait {
   flex: 0 0 auto;
-  display: flex;
-  align-items: stretch;
+  position: relative;
   margin: 0;
   line-height: 0;
-  /* cap width so a square photo can’t blow past the layout */
-  max-width: min(16rem, 42vw);
-  align-self: stretch;
+  overflow: hidden;
+  /* fallback before JS measures */
+  width: 220px;
+  height: 220px;
 }
 
 .home-portrait-img {
   display: block !important;
+  width: 100% !important;
   height: 100% !important;
-  width: auto !important;
-  max-width: 100% !important;
+  max-width: none !important;
   object-fit: contain !important;
-  object-position: top center !important;
+  object-position: center top !important;
 }
 
 /* Full-width link bar under text + image */

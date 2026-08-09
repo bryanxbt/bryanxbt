@@ -136,15 +136,6 @@ body {
 .home-portrait-img {
   object-fit: cover;
   object-position: center top;
-  filter: grayscale(100%);
-  mix-blend-mode: multiply;
-  opacity: 0.92;
-  transition: filter 0.35s ease, opacity 0.35s ease;
-}
-
-.home-portrait:hover .home-portrait-img {
-  filter: grayscale(0%);
-  opacity: 1;
 }
 
 /* Bottom page buttons on home */

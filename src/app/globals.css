@@ -159,41 +159,36 @@ body {
   object-position: center 10% !important;
 }
 
-/* Bottom page buttons on home */
-
-.home-actions {
+/* Full-width link bar under text + image */
+.home-bar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.65rem 0;
+  width: 100%;
   margin-top: 2.75rem;
-  padding-top: 1.75rem;
+  padding-top: 1.25rem;
   border-top: 1px solid var(--rule);
   font-size: 0.9rem;
+  row-gap: 0.5rem;
 }
 
-.home-action {
+.home-bar a {
   color: var(--ink-soft);
   text-decoration: none;
   white-space: nowrap;
+  border: none;
   transition: color 0.12s ease;
-  border-bottom: 1px solid transparent;
 }
 
-.home-action:hover {
+.home-bar a:hover {
   color: var(--ink);
-  border-bottom-color: var(--ink);
 }
 
-.home-action + .home-action::before {
+.home-bar a + a::before {
   content: "·";
   color: var(--rule-strong);
-  margin: 0 0.7rem;
+  margin: 0 0.65rem;
   pointer-events: none;
-}
-
-.links--home {
-  margin-top: 1.5rem;
 }
 
 /* Subpage chrome */

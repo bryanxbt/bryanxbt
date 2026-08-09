@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import { HomeHero } from "@/components/HomeHero";
+import { ScrambleTitle } from "@/components/ScrambleTitle";
 import { asset } from "@/lib/paths";
 
 export default function Home() {
@@ -11,7 +12,49 @@ export default function Home() {
         - Simplicity wins.
       */}
       <main className="shell shell--home">
-        <HomeHero />
+        {/*
+          One grid row: left text (title → College) defines the row height.
+          Right column is a fixed width and stretches to that same height,
+          so photo top aligns with title and bottom with the last bio line.
+        */}
+        <div className="home-body">
+          <div className="home-copy">
+            <header>
+              <h1 className="site-title">
+                <ScrambleTitle primary="Bryan Elliott" secondary="BryanXBT" />
+              </h1>
+              <p className="site-role">community · brand · bitcoin</p>
+            </header>
+
+            <section className="prose home-prose">
+              <p>
+                I build and grow brands in the Bitcoin and startup ecosystem —
+                from first post to 300K+ engaged members, conference summits, and
+                the relationships that make a project grow organically.
+              </p>
+              <p>
+                Event programming, community ops, and content systems. Deep
+                connections across the crypto and the web3 startup community.
+              </p>
+              <p>
+                Pre-crypto: chemistry educator, NCAA athlete. B.A. Biology, Wabash
+                College.
+              </p>
+            </section>
+          </div>
+
+          <div className="home-portrait">
+            <Image
+              src={asset("/assets/bryan-headshot.png")}
+              alt="Bryan Elliott"
+              width={1024}
+              height={1024}
+              priority
+              className="home-portrait-img"
+              sizes="220px"
+            />
+          </div>
+        </div>
 
         <nav className="home-bar" aria-label="Site">
           <Link href="/work">work</Link>

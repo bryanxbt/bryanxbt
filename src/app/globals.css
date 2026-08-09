@@ -94,31 +94,33 @@ body {
   }
 }
 
-/* —— Home: text block left, headshot right (same height: title → College) —— */
+/* —— Home: text left, portrait right ——
+   Text column sets the row height (title → College).
+   Portrait is a fixed narrow column that stretches to that height.
+   Image fills the column top-to-bottom without widening past ~13.5rem.
+*/
 
 .shell--home {
-  max-width: 52rem;
+  max-width: 44rem;
 }
 
 .home-body {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 1.5rem;
-  align-items: flex-start;
+  align-items: start;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 640px) {
   .home-body {
-    flex-direction: row;
-    gap: 2rem;
-    align-items: flex-start;
+    /* text takes remaining space; photo is a fixed strip */
+    grid-template-columns: minmax(0, 1fr) 13.5rem;
+    gap: 1.75rem;
+    align-items: stretch;
   }
 }
 
 .home-copy {
   min-width: 0;
-  flex: 1 1 auto;
-  max-width: 28rem;
 }
 
 .home-copy .site-role {
@@ -129,19 +131,24 @@ body {
   min-width: 0;
 }
 
-/*
-  Box height is set in JS to match .home-copy (title through last line).
-  Image fills that box with contain — full photo, no crop.
-*/
 .home-portrait {
-  flex: 0 0 auto;
-  position: relative;
   margin: 0;
   line-height: 0;
   overflow: hidden;
-  /* fallback before JS measures */
-  width: 220px;
-  height: 220px;
+  background: transparent;
+  /* mobile: sit under text at a modest size */
+  width: 13.5rem;
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  .home-portrait {
+    width: auto;
+    height: auto;
+    min-height: 100%;
+    align-self: stretch;
+    display: flex;
+  }
 }
 
 .home-portrait-img {
@@ -149,7 +156,8 @@ body {
   width: 100% !important;
   height: 100% !important;
   max-width: none !important;
-  object-fit: contain !important;
+  /* fill the tall strip; slight side crop only if needed so top/bottom hit the edges */
+  object-fit: cover !important;
   object-position: center top !important;
 }
 

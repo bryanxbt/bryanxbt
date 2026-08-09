@@ -132,33 +132,41 @@ body {
 }
 
 .home-portrait {
+  position: relative;
   margin: 0;
   line-height: 0;
   overflow: hidden;
   background: transparent;
-  /* mobile: sit under text at a modest size */
+  /* mobile: fixed square under the text */
   width: 13.5rem;
   max-width: 100%;
+  aspect-ratio: 1;
 }
 
 @media (min-width: 640px) {
   .home-portrait {
     width: auto;
-    height: auto;
-    min-height: 100%;
+    aspect-ratio: auto;
+    /* stretch to the full height of the text column (title → College) */
     align-self: stretch;
-    display: flex;
+    min-height: 100%;
+    height: 100%;
   }
 }
 
 .home-portrait-img {
-  display: block !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+}
+
+/* Next/Image fill + beat preflight */
+.home-portrait > span,
+.home-portrait > img {
+  position: absolute !important;
+  inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
   max-width: none !important;
-  /* fill the tall strip; slight side crop only if needed so top/bottom hit the edges */
-  object-fit: cover !important;
-  object-position: center top !important;
 }
 
 /* Full-width link bar under text + image */

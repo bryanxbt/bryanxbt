@@ -47,11 +47,10 @@ export default function Home() {
             <Image
               src={asset("/assets/bryan-headshot.png")}
               alt="Bryan Elliott"
-              width={1024}
-              height={1024}
+              fill
               priority
               className="home-portrait-img"
-              sizes="220px"
+              sizes="216px"
             />
           </div>
         </div>

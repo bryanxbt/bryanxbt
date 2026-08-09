@@ -124,8 +124,9 @@ body {
 }
 
 /*
-  Portrait matches the full left column (title + role + bio).
-  Flex stretch sets the box height; image absolutely fills it.
+  Portrait column matches full left column height (title + role + bio).
+  Image is shown in full — no crop (object-fit: contain).
+  Anchored to the bottom so open space sits at the top next to the title.
 */
 .home-portrait {
   position: relative;
@@ -134,7 +135,7 @@ body {
   min-height: 18rem;
   margin: 0;
   overflow: hidden;
-  background: #fff;
+  background: transparent;
 }
 
 @media (min-width: 720px) {
@@ -155,8 +156,8 @@ body {
 }
 
 .home-portrait-img {
-  object-fit: cover !important;
-  object-position: center 10% !important;
+  object-fit: contain !important;
+  object-position: bottom center !important;
 }
 
 /* Full-width link bar under text + image */

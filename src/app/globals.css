@@ -94,49 +94,55 @@ body {
   }
 }
 
-/* —— Home: copy left, photo right —— */
+/* —— Home: prose left, photo right (same height as text) —— */
 
-.home-hero {
-  display: grid;
-  gap: 2rem;
-  align-items: start;
-}
-
-@media (min-width: 720px) {
-  .home-hero {
-    grid-template-columns: 1fr minmax(10rem, 14rem);
-    gap: 2.5rem;
-    align-items: start;
-  }
-}
-
-.home-copy .site-role {
+.shell--home .site-role {
   margin-bottom: 1.75rem;
 }
 
+.home-body {
+  display: grid;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+@media (min-width: 720px) {
+  .home-body {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2rem;
+  }
+}
+
+.home-prose {
+  min-width: 0;
+}
+
+/* Portrait column stretches to match prose block height */
 .home-portrait {
-  max-width: 14rem;
+  position: relative;
+  width: 100%;
+  min-height: 14rem;
   margin: 0;
+  overflow: hidden;
 }
 
 @media (min-width: 720px) {
   .home-portrait {
-    margin-top: 0.15rem;
-    justify-self: end;
+    min-height: 0; /* let grid stretch dictate height */
+    height: 100%;
   }
 }
 
-.home-portrait img {
-  display: block;
-  width: 100%;
-  height: auto;
+.home-portrait-img {
+  object-fit: cover;
+  object-position: center top;
   filter: grayscale(100%);
   mix-blend-mode: multiply;
   opacity: 0.92;
   transition: filter 0.35s ease, opacity 0.35s ease;
 }
 
-.home-portrait:hover img {
+.home-portrait:hover .home-portrait-img {
   filter: grayscale(0%);
   opacity: 1;
 }

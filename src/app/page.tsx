@@ -12,39 +12,39 @@ export default function Home() {
         - Simplicity wins.
       */}
       <main className="shell shell--home">
-        <div className="home-hero">
-          <div className="home-copy">
-            <header>
-              <h1 className="site-title">
-                <ScrambleTitle primary="Bryan Elliott" secondary="BryanXBT" />
-              </h1>
-              <p className="site-role">community · brand · bitcoin</p>
-            </header>
+        <header>
+          <h1 className="site-title">
+            <ScrambleTitle primary="Bryan Elliott" secondary="BryanXBT" />
+          </h1>
+          <p className="site-role">community · brand · bitcoin</p>
+        </header>
 
-            <section className="prose">
-              <p>
-                I build and grow brands in the Bitcoin and startup ecosystem —
-                from first post to 300K+ engaged members, conference summits, and
-                the relationships that make a project grow organically.
-              </p>
-              <p>
-                Event programming, community ops, and content systems. Deep
-                connections across the crypto and the web3 startup community.
-              </p>
-              <p>
-                Pre-crypto: chemistry educator, NCAA athlete. B.A. Biology,
-                Wabash College.
-              </p>
-            </section>
-          </div>
+        {/* Text + image row: image height matches the prose block */}
+        <div className="home-body">
+          <section className="prose home-prose">
+            <p>
+              I build and grow brands in the Bitcoin and startup ecosystem —
+              from first post to 300K+ engaged members, conference summits, and
+              the relationships that make a project grow organically.
+            </p>
+            <p>
+              Event programming, community ops, and content systems. Deep
+              connections across the crypto and the web3 startup community.
+            </p>
+            <p>
+              Pre-crypto: chemistry educator, NCAA athlete. B.A. Biology, Wabash
+              College.
+            </p>
+          </section>
 
-          <div className="home-portrait">
+          <div className="home-portrait" aria-hidden={false}>
             <Image
               src={asset("/assets/bryan-headshot.png")}
               alt="Bryan Elliott"
-              width={480}
-              height={480}
+              fill
+              sizes="(max-width: 720px) 100vw, 40vw"
               priority
+              className="home-portrait-img"
             />
           </div>
         </div>

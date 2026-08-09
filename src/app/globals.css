@@ -1,26 +1,422 @@
 @import "tailwindcss";
 
+/*
+  Stoic personal site — inspired by the restraint of roethke.dev:
+  monospace, warm paper, quiet type, almost no chrome.
+*/
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f8f8f6;
+  --ink: #1c1c1a;
+  --ink-body: #444444;
+  --ink-soft: #777777;
+  --ink-faint: #999999;
+  --rule: #e4e4e0;
+  --rule-strong: #cccccc;
+  --accent: #1c1c1a;
+  --link-hover: #0052ff;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  /*
+    Terminal-first stack: on macOS this usually resolves to SF Mono / Menlo
+    (same family as Terminal.app). Elsewhere: Consolas, Liberation Mono, etc.
+  */
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    "SF Mono",
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace;
+  font-size: 0.9375rem;
+  line-height: 1.9;
+  font-variant-ligatures: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* —— Shell —— */
+
+.site {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.shell {
+  width: 100%;
+  max-width: 38rem; /* ~608px — close to Jon’s 600px */
+  margin: 0 auto;
+  padding: 4rem 1.75rem 5rem;
+}
+
+@media (min-width: 640px) {
+  .shell {
+    padding: 5.5rem 2rem 6rem;
+  }
+}
+
+/* —— Type —— */
+
+.site-title {
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  margin: 0 0 0.45rem;
+  color: var(--ink);
+}
+
+/* reserve height so scramble length changes don’t jump the layout */
+.scramble-title {
+  display: inline-block;
+  min-width: 13ch; /* "Bryan Elliott" */
+  white-space: pre;
+}
+
+.site-role {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+  margin: 0 0 2.75rem;
+}
+
+.prose p {
+  margin: 0;
+  color: var(--ink-body);
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+
+.prose p + p {
+  margin-top: 1rem;
+}
+
+.prose a {
+  color: var(--ink-body);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+  transition: color 0.12s ease, border-color 0.12s ease;
+}
+
+.prose a:hover {
+  color: var(--link-hover);
+  border-color: var(--link-hover);
+}
+
+/* —— Sections —— */
+
+.block {
+  margin-top: 2.75rem;
+}
+
+.block-label {
+  display: block;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  margin-bottom: 1rem;
+}
+
+.rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.75rem 0 0;
+}
+
+/* —— Stats (quiet) —— */
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem 1.5rem;
+  margin-top: 0.25rem;
+}
+
+@media (min-width: 480px) {
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.stat-n {
+  font-size: 0.95rem;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+.stat-l {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+/* —— Work / experience lists —— */
+
+.item {
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.item:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.item-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+}
+
+.item-title {
+  font-size: 0.9rem;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.item-meta {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
+}
+
+.item-result {
+  font-size: 0.8rem;
+  color: var(--ink);
+  margin-top: 0.4rem;
+}
+
+.item-body {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--ink-body);
+  margin-top: 0.45rem;
+}
+
+.item-list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+
+.item-list li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.8rem;
+  line-height: 1.65;
+  color: var(--ink-body);
+  margin-top: 0.4rem;
+}
+
+.item-list li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--rule-strong);
+}
+
+/* —— Links row (Jon-style) —— */
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 0.5rem;
+  font-size: 0.9rem;
+  margin-top: 2.5rem;
+}
+
+.links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.12s ease;
+  border: none;
+}
+
+.links a:hover {
+  color: var(--ink);
+}
+
+.links a + a::before {
+  content: "·";
+  color: var(--rule-strong);
+  margin: 0 0.55rem;
+  pointer-events: none;
+}
+
+@media (max-width: 480px) {
+  .shell {
+    padding-top: 3.5rem;
+  }
+
+  .links {
+    column-gap: 1.2rem;
+  }
+
+  .links a + a::before {
+    content: none;
+    margin: 0;
+  }
+}
+
+/* —— Portrait —— */
+
+.portrait {
+  margin: 2rem 0 0;
+  max-width: 11rem;
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  mix-blend-mode: multiply;
+  opacity: 0.92;
+  transition: filter 0.35s ease, opacity 0.35s ease;
+}
+
+.portrait:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* —— Form (stoic) —— */
+
+.form {
+  margin-top: 0.5rem;
+}
+
+.form-row {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  margin-bottom: 0.35rem;
+}
+
+.field {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  outline: none;
+  transition: border-color 0.12s ease;
+}
+
+.field::placeholder {
+  color: var(--ink-faint);
+  opacity: 0.85;
+}
+
+.field:focus {
+  border-bottom-color: var(--ink);
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+  transition: color 0.12s ease, border-color 0.12s ease;
+}
+
+.btn:hover:not(:disabled) {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.form-note {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  margin-top: 0.85rem;
+  line-height: 1.5;
+}
+
+.form-alert {
+  font-size: 0.85rem;
+  color: var(--ink-body);
+  margin-top: 0.75rem;
+  line-height: 1.6;
+}
+
+.form-success h3 {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
+}
+
+.form-success p {
+  font-size: 0.85rem;
+  color: var(--ink-body);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* —— Footer —— */
+
+.site-foot {
+  margin-top: 3.5rem;
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
 }

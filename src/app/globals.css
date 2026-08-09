@@ -94,25 +94,27 @@ body {
   }
 }
 
-/* —— Home: full text block left, portrait right (same total height) —— */
+/* —— Home: text left, portrait right (image height = full text block) —— */
 
 .home-body {
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
-  align-items: stretch;
+  align-items: flex-start;
 }
 
 @media (min-width: 720px) {
   .home-body {
     flex-direction: row;
     gap: 2.25rem;
+    align-items: flex-start;
   }
 }
 
 .home-copy {
   min-width: 0;
-  flex: 1 1 55%;
+  flex: 1 1 auto;
+  max-width: 28rem;
 }
 
 .home-copy .site-role {
@@ -123,41 +125,20 @@ body {
   min-width: 0;
 }
 
-/*
-  Portrait column matches full left column height (title + role + bio).
-  Image is shown in full — no crop (object-fit: contain).
-  Anchored to the bottom so open space sits at the top next to the title.
-*/
+/* Height is set in JS to match .home-copy exactly (title → last bio line). */
 .home-portrait {
-  position: relative;
-  flex: 1 1 42%;
-  width: 100%;
-  min-height: 18rem;
+  flex: 0 0 auto;
   margin: 0;
-  overflow: hidden;
+  line-height: 0;
   background: transparent;
 }
 
-@media (min-width: 720px) {
-  .home-portrait {
-    min-height: unset;
-    align-self: stretch;
-  }
-}
-
-/* Beat Tailwind preflight img { height: auto; max-width: 100% } */
-.home-portrait > span,
-.home-portrait > img {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-}
-
 .home-portrait-img {
+  display: block !important;
+  width: auto !important;
+  max-width: none !important;
+  height: auto;
   object-fit: contain !important;
-  object-position: bottom center !important;
 }
 
 /* Full-width link bar under text + image */

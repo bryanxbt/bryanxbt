@@ -51,19 +51,10 @@ export default function Home() {
           </div>
         </div>
 
-        <nav className="home-actions" aria-label="Pages">
-          <Link href="/work" className="home-action">
-            work
-          </Link>
-          <Link href="/experience" className="home-action">
-            experience
-          </Link>
-          <Link href="/contact" className="home-action">
-            contact
-          </Link>
-        </nav>
-
-        <nav className="links links--home" aria-label="External">
+        <nav className="home-bar" aria-label="Site">
+          <Link href="/work">work</Link>
+          <Link href="/experience">experience</Link>
+          <Link href="/contact">contact</Link>
           <a
             href="https://x.com/bryanxbt"
             target="_blank"
@@ -89,7 +80,7 @@ export default function Home() {
         </nav>
 
         <footer className="site-foot">
-          © {new Date().getFullYear()} bryan elliott · indianapolis
+          bryan elliott • indianapolis • {new Date().getFullYear()}
         </footer>
       </main>
     </div>

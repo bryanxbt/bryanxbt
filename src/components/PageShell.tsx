@@ -71,7 +71,7 @@ export function PageShell({
         </nav>
 
         <footer className="site-foot">
-          © {new Date().getFullYear()} bryan elliott · indianapolis
+          bryan elliott • indianapolis • {new Date().getFullYear()}
         </footer>
       </main>
     </div>
